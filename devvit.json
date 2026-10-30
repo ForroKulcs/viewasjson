@@ -1,0 +1,118 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "viewasjson",
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "View Post as JSON",
+        "location": "post",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/view-as-json"
+      },
+      {
+        "label": "View Comment as JSON",
+        "location": "comment",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/view-as-json"
+      },
+      {
+        "label": "View User as JSON",
+        "location": ["post", "comment"],
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/view-user-as-json"
+      },
+      {
+        "label": "View Subreddit as JSON",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/view-as-json"
+      }
+    ]
+  },
+  "forms": {
+    "jsonView": "/internal/form/json-view-submit"
+  },
+  "settings": {
+    "subreddit": {
+      "indentation": {
+        "type": "select",
+        "label": "JSON indentation",
+        "options": [
+          {
+            "label": "No indentation",
+            "value": "none"
+          },
+          {
+            "label": "Indent with Tab",
+            "value": "tab"
+          },
+          {
+            "label": "Indent with 1 space",
+            "value": "1"
+          },
+          {
+            "label": "Indent with 2 spaces",
+            "value": "2"
+          },
+          {
+            "label": "Indent with 4 spaces",
+            "value": "4"
+          },
+          {
+            "label": "Indent with 8 spaces",
+            "value": "8"
+          }
+        ],
+        "defaultValue": "2"
+      },
+      "sortKeys": {
+        "type": "boolean",
+        "label": "Sort keys alphabetically",
+        "defaultValue": false
+      },
+      "includeOuterBraces": {
+        "type": "boolean",
+        "label": "Include outer braces",
+        "defaultValue": true
+      },
+      "showUsernamesIn": {
+        "type": "multiSelect",
+        "label": "Show usernames in:",
+        "helpText": "Usernames are shown in the JSON only for the areas checked here. Everywhere else they are replaced with empty strings.",
+        "options": [
+          {
+            "label": "Subreddit",
+            "value": "subreddit"
+          },
+          {
+            "label": "User",
+            "value": "user"
+          },
+          {
+            "label": "Post",
+            "value": "post"
+          },
+          {
+            "label": "Comment",
+            "value": "comment"
+          }
+        ],
+        "defaultValue": []
+      }
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "permissions": {
+    "reddit": true
+  },
+  "dev": {
+    "subreddit": "viewasjson_dev"
+  }
+}
